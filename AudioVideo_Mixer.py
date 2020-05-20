@@ -3,6 +3,7 @@ from mhmovie.code import *
 
 window = Tk()
 window.title("Audio & Video Mixer")
-window.geometry("750x260")
+window.configure(background="gray50")
+window.geometry("750x290")
 
 window.mainloop()
