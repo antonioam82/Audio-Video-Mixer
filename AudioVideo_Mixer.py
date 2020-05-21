@@ -10,6 +10,12 @@ class app:
 
         self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", bg="black", width=99, height = 2)
         self.label.place(x=25,y=30)
+        self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="red", fg="white", width=45, height=2)
+        self.btnAudio.place(x=25,y=115)
+        self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white", width=45, height=2)
+        self.btnVideo.place(x=398,y=115)
+        self.btnMix = Button(self.window, text="UNIR", bg="blue", fg="white", width=20, height=2)
+        self.btnMix.place(x=300,y=200)
 
         self.window.mainloop()
 
