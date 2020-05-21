@@ -1,5 +1,8 @@
 from tkinter import *
+from tkinter import messagebox, filedialog
 from mhmovie.code import *
+
+
 
 class app:
     def __init__(self):
@@ -10,14 +13,26 @@ class app:
 
         self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", bg="black", width=99, height = 2)
         self.label.place(x=25,y=30)
-        self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="red", fg="white", width=45, height=2)
+        self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="red", fg="white", width=45, height=2, command=self.get_audio)
         self.btnAudio.place(x=25,y=115)
-        self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white", width=45, height=2)
+        self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white", width=45, height=2,command=self.get_video)
         self.btnVideo.place(x=398,y=115)
         self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white", width=98, height=2)
         self.btnMix.place(x=26,y=200)
 
         self.window.mainloop()
+
+    def get_audio(self):
+        ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("mp3 files","*.mp3")
+                                          ,("wav files","*.wav"),("mp4 files","*.mp4"),("flv files","*.flv")
+                                          ,("ogg files","*.ogg"),("mp2 files","*.mp2"),("aac files","*.aiff")
+                                          ,("au files","*.au")))
+        self.selected_audio = music(ruta)
+
+    def get_video(self):
+        ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("mp4 files","*.mp4"),("AVI files","*.avi")))
+        
+        self.selected_video = movie(ruta)
 
 
 if __name__=="__main__":
