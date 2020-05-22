@@ -30,7 +30,7 @@ class app:
                                           ,("ogg files","*.ogg"),("mp2 files","*.mp2"),("aac files","*.aiff")
                                           ,("au files","*.au")))
         if ruta != "":
-            self.aud = (((ruta).split("/"))[-1])
+            self.aud = ((ruta).split("/"))[-1]
             if self.vid == "":
                 self.label.configure(text=self.aud)
             else:
@@ -41,7 +41,7 @@ class app:
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR VIDEO",filetypes =(("mp4 files","*.mp4"),("AVI files","*.avi")))
         
         if ruta != "":
-            self.vid = (((ruta).split("/"))[-1])
+            self.vid = ((ruta).split("/"))[-1]
             if self.aud == "":
                 self.label.configure(text=self.vid)
             else:
