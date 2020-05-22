@@ -3,8 +3,6 @@ from tkinter import messagebox, filedialog
 from mhmovie.code import *
 import os
 
-
-
 class app:
     def __init__(self):
         self.window = Tk()
