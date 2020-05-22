@@ -37,12 +37,13 @@ class app:
         
         if ruta != "":
             vid = (((ruta).split("/"))[-1])
+            name, self.vid_ex = os.path.splitext(vid)
             self.selected_video = movie(vid)
 
     def merge(self):
         try:
             result = self.selected_video + self.selected_audio
-            result.save("new_video.avi")
+            result.save("new_video"+self.vid_ex)
             print("DONE")
         except:
             print("ERROR")
