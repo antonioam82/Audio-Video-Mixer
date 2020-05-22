@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox, filedialog
 from mhmovie.code import *
 import os
+import glob
 
 class app:
     def __init__(self):
@@ -51,7 +52,7 @@ class app:
     def merge(self):
         try:
             result = self.selected_video + self.selected_audio
-            result.save("new_video"+self.vid_ex)
+            result.save("new_video2"+self.vid_ex)
             print("DONE")
         except:
             print("ERROR")
@@ -59,5 +60,6 @@ class app:
 
 if __name__=="__main__":
     app()
+
 
 
