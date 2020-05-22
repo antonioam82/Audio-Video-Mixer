@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox, filedialog
 from mhmovie.code import *
+import os
 
 
 
@@ -17,7 +18,7 @@ class app:
         self.btnAudio.place(x=25,y=115)
         self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white", width=45, height=2,command=self.get_video)
         self.btnVideo.place(x=398,y=115)
-        self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white", width=98, height=2)
+        self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white", width=98, height=2,command=self.merge)
         self.btnMix.place(x=26,y=200)
 
         self.window.mainloop()
@@ -27,14 +28,27 @@ class app:
                                           ,("wav files","*.wav"),("mp4 files","*.mp4"),("flv files","*.flv")
                                           ,("ogg files","*.ogg"),("mp2 files","*.mp2"),("aac files","*.aiff")
                                           ,("au files","*.au")))
-        self.selected_audio = music(ruta)
+        if ruta != "":
+            aud = (((ruta).split("/"))[-1])
+            self.selected_audio = music(aud)
 
     def get_video(self):
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("mp4 files","*.mp4"),("AVI files","*.avi")))
         
-        self.selected_video = movie(ruta)
+        if ruta != "":
+            vid = (((ruta).split("/"))[-1])
+            self.selected_video = movie(vid)
+
+    def merge(self):
+        try:
+            result = self.selected_video + self.selected_audio
+            result.save("new_video.avi")
+            print("DONE")
+        except:
+            print("ERROR")
 
 
 if __name__=="__main__":
     app()
+
 
