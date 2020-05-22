@@ -30,7 +30,7 @@ class app:
                                           ,("ogg files","*.ogg"),("mp2 files","*.mp2"),("aac files","*.aiff")
                                           ,("au files","*.au")))
         if ruta != "":
-            self.aud = ((ruta).split("/"))[-1]
+            self.aud = (((ruta).split("/"))[-1])
             if self.vid == "":
                 self.label.configure(text=self.aud)
             else:
@@ -41,7 +41,7 @@ class app:
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR VIDEO",filetypes =(("mp4 files","*.mp4"),("AVI files","*.avi")))
         
         if ruta != "":
-            self.vid = ((ruta).split("/"))[-1]
+            self.vid = (((ruta).split("/"))[-1])
             if self.aud == "":
                 self.label.configure(text=self.vid)
             else:
@@ -50,13 +50,24 @@ class app:
             self.selected_video = movie(self.vid)
 
     def merge(self):
-        try:
-            result = self.selected_video + self.selected_audio
-            result.save("new_video2"+self.vid_ex)
-            print("DONE")
-        except:
-            print("ERROR")
+        #try:
+        result = self.selected_video + self.selected_audio
+        video_name = self.file_name()
+        result.save(video_name)
+        print("DONE")
+        #except:
+            #print("ERROR")
 
+    def file_name(self):
+        count = 0
+        for i in glob.glob("*"+self.vid_ex):
+            if "mixed_video" in i:
+                count+=1
+        if count>0:
+            name = "mixed_video"+"("+str(count)+")"+self.vid_ex
+        else:
+            name = "mixed_video"+self.vid_ex
+        return name
 
 if __name__=="__main__":
     app()
