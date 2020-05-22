@@ -50,13 +50,13 @@ class app:
             self.selected_video = movie(self.vid)
 
     def merge(self):
-        #try:
-        result = self.selected_video + self.selected_audio
-        video_name = self.file_name()
-        result.save(video_name)
-        print("DONE")
-        #except:
-            #print("ERROR")
+        try:
+            result = self.selected_video + self.selected_audio
+            video_name = self.file_name()
+            result.save(video_name)
+            print("DONE")
+        except:
+            print("ERROR")
 
     def file_name(self):
         count = 0
