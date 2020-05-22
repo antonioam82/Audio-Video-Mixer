@@ -11,8 +11,10 @@ class app:
         self.window.title("Audio & Video Mixer")
         self.window.configure(background="gray50")
         self.window.geometry("750x290")
+        self.vid = ""
+        self.aud = ""
 
-        self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", bg="black", width=99, height = 2)
+        self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", bg="black", fg="red", width=99, height = 2)
         self.label.place(x=25,y=30)
         self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="red", fg="white", width=45, height=2, command=self.get_audio)
         self.btnAudio.place(x=25,y=115)
@@ -29,16 +31,24 @@ class app:
                                           ,("ogg files","*.ogg"),("mp2 files","*.mp2"),("aac files","*.aiff")
                                           ,("au files","*.au")))
         if ruta != "":
-            aud = (((ruta).split("/"))[-1])
-            self.selected_audio = music(aud)
+            self.aud = (((ruta).split("/"))[-1])
+            if self.vid == "":
+                self.label.configure(text=self.aud)
+            else:
+                self.label.configure(text=self.vid+"+"+self.aud)
+            self.selected_audio = music(self.aud)
 
     def get_video(self):
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("mp4 files","*.mp4"),("AVI files","*.avi")))
         
         if ruta != "":
-            vid = (((ruta).split("/"))[-1])
-            name, self.vid_ex = os.path.splitext(vid)
-            self.selected_video = movie(vid)
+            self.vid = (((ruta).split("/"))[-1])
+            if self.aud == "":
+                self.label.configure(text=self.vid)
+            else:
+                self.label.configure(text=self.aud+"+"+self.vid)
+            name, self.vid_ex = os.path.splitext(self.vid)
+            self.selected_video = movie(self.vid)
 
     def merge(self):
         try:
