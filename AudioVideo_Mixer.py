@@ -37,7 +37,7 @@ class app:
             self.selected_audio = music(self.aud)
 
     def get_video(self):
-        ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("mp4 files","*.mp4"),("AVI files","*.avi")))
+        ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR VIDEO",filetypes =(("mp4 files","*.mp4"),("AVI files","*.avi")))
         
         if ruta != "":
             self.vid = (((ruta).split("/"))[-1])
