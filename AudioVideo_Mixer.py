@@ -27,24 +27,29 @@ class app:
     def get_audio(self):
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("wav files","*.wav"),("all files","*")))
         if ruta != "":
-            self.aud = (((ruta).split("/"))[-1])
-            if self.vid == "":
-                self.label.configure(text=self.aud)
-            else:
-                self.label.configure(text=self.vid+"+"+self.aud)
-            self.selected_audio = music(self.aud)
+            try:
+                self.aud = (((ruta).split("/"))[-1])
+                if self.vid == "":
+                    self.label.configure(text=self.aud)
+                else:
+                    self.label.configure(text=self.vid+"+"+self.aud)
+                self.selected_audio = music(self.aud)
+            except:
+                messagebox.showwarning("ERROR","Archivo no válido")
 
     def get_video(self):
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR VIDEO",filetypes =(("avi files","*.avi"),("all files","*")))
-        
         if ruta != "":
-            self.vid = (((ruta).split("/"))[-1])
-            if self.aud == "":
-                self.label.configure(text=self.vid)
-            else:
-                self.label.configure(text=self.aud+"+"+self.vid)
-            name, self.vid_ex = os.path.splitext(self.vid)
-            self.selected_video = movie(self.vid)
+            try:
+                self.vid = (((ruta).split("/"))[-1])
+                if self.aud == "":
+                    self.label.configure(text=self.vid)
+                else:
+                    self.label.configure(text=self.aud+"+"+self.vid)
+                name, self.vid_ex = os.path.splitext(self.vid)
+                self.selected_video = movie(self.vid)
+            except:
+                messagebox.showwarning("ERROR","Archivo no válido")
 
     def merge(self):
         try:
@@ -53,7 +58,7 @@ class app:
             result.save(video_name)
             print("DONE")
         except:
-            print("ERROR")
+            messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
     def file_name(self):
         count = 0
