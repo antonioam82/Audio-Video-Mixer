@@ -25,10 +25,7 @@ class app:
         self.window.mainloop()
 
     def get_audio(self):
-        ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("mp3 files","*.mp3")
-                                          ,("wav files","*.wav"),("mp4 files","*.mp4"),("flv files","*.flv")
-                                          ,("ogg files","*.ogg"),("mp2 files","*.mp2"),("aac files","*.aiff")
-                                          ,("au files","*.au")))
+        ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("wav files","*.wav"),("all files","*")))
         if ruta != "":
             self.aud = (((ruta).split("/"))[-1])
             if self.vid == "":
@@ -50,13 +47,13 @@ class app:
             self.selected_video = movie(self.vid)
 
     def merge(self):
-        #try:
-        result = self.selected_video + self.selected_audio
-        video_name = self.file_name()
-        result.save(video_name)
-        print("DONE")
-        #except:
-            #print("ERROR")
+        try:
+            result = self.selected_video + self.selected_audio
+            video_name = self.file_name()
+            result.save(video_name)
+            print("DONE")
+        except:
+            print("ERROR")
 
     def file_name(self):
         count = 0
