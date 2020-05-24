@@ -55,11 +55,13 @@ class app:
         if self.vid != "" and self.aud != "":
             try:
                 new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".avi")
-                result = self.selected_video + self.selected_audio
-                result.save(new_file)
-                #video_name = self.file_name()
-                #result.save(video_name)
-                print("DONE")
+                if new_file != "":
+                    result = self.selected_video + self.selected_audio
+                    result.save(new_file)
+                    #print(os.getcwd())
+                   #video_name = self.file_name()
+                   #result.save(video_name)
+                    print("DONE")
             except:
                 messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
