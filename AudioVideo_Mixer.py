@@ -54,7 +54,7 @@ class app:
     def merge(self):
         if self.vid != "" and self.aud != "":
             try:
-                new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".avi")
+                new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=self.vid_ex)
                 if new_file != "":
                     result = self.selected_video + self.selected_audio
                     result.save(new_file)
