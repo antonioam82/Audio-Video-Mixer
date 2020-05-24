@@ -52,15 +52,16 @@ class app:
                 messagebox.showwarning("ERROR","Archivo no válido")
 
     def merge(self):
-        try:
-            new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".avi")
-            result = self.selected_video + self.selected_audio
-            result.save(new_file)
-            #video_name = self.file_name()
-            #result.save(video_name)
-            print("DONE")
-        except:
-            messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
+        if self.vid != "" and self.aud != "":
+            try:
+                new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".avi")
+                result = self.selected_video + self.selected_audio
+                result.save(new_file)
+                #video_name = self.file_name()
+                #result.save(video_name)
+                print("DONE")
+            except:
+                messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
 
     #def file_name(self):
