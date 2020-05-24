@@ -53,14 +53,17 @@ class app:
 
     def merge(self):
         try:
+            new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=".avi")
             result = self.selected_video + self.selected_audio
-            video_name = self.file_name()
-            result.save(video_name)
+            result.save(new_file)
+            #video_name = self.file_name()
+            #result.save(video_name)
             print("DONE")
         except:
             messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
-    def file_name(self):
+
+ """def file_name(self):
         count = 0
         for i in glob.glob("*"+self.vid_ex):
             if "mixed_video" in i:
@@ -69,7 +72,7 @@ class app:
             name = "mixed_video"+"("+str(count)+")"+self.vid_ex
         else:
             name = "mixed_video"+self.vid_ex
-        return name
+        return name"""
 
 if __name__=="__main__":
     app()
