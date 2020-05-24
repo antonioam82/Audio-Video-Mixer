@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import messagebox, filedialog
 from mhmovie.code import *
 import os
-import glob
+#import glob
 
 class app:
     def __init__(self):
@@ -63,16 +63,16 @@ class app:
             messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
 
- """def file_name(self):
-        count = 0
-        for i in glob.glob("*"+self.vid_ex):
-            if "mixed_video" in i:
-                count+=1
-        if count>0:
-            name = "mixed_video"+"("+str(count)+")"+self.vid_ex
-        else:
-            name = "mixed_video"+self.vid_ex
-        return name"""
+    #def file_name(self):
+        #count = 0
+        #for i in glob.glob("*"+self.vid_ex):
+            #if "mixed_video" in i:
+                #count+=1
+        #if count>0:
+            #name = "mixed_video"+"("+str(count)+")"+self.vid_ex
+        #else:
+            #name = "mixed_video"+self.vid_ex
+        #return name"""
 
 if __name__=="__main__":
     app()
