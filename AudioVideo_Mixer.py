@@ -58,10 +58,11 @@ class app:
                 if new_file != "":
                     result = self.selected_video + self.selected_audio
                     result.save(new_file)
+                    messagebox.showinfo("PROCESO","TAREA COMPLETADA")
                     #print(os.getcwd())
                     #video_name = self.file_name()
                     #result.save(video_name)
-                    print("DONE")
+                    #print("DONE")
             except:
                 messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
