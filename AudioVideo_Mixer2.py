@@ -17,6 +17,8 @@ class app:
         self.label.place(x=25,y=30)
         self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="red", fg="white",activebackground="white",activeforeground="red",
                                width=45, height=2, command=self.get_audio)
+        self.labelT = Label(self.window, bg = "gray50", fg = "white", width = 99, height = 2)
+        self.labelT.place(x=25,y=70)
         self.btnAudio.place(x=25,y=115)
         self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white",activebackground="white",activeforeground="red",
                                width=45, height=2,command=self.get_video)
@@ -28,6 +30,7 @@ class app:
         self.window.mainloop()
 
     def get_audio(self):
+        self.labelT.configure(text = "")
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("wav files","*.wav"),("all files","*")))
         if ruta != "":
             try:
@@ -41,6 +44,7 @@ class app:
                 messagebox.showwarning("ERROR","Archivo no válido")
 
     def get_video(self):
+        self.labelT.configure(text = "")
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR VIDEO",filetypes =(("avi files","*.avi"),("all files","*")))
         if ruta != "":
             try:
@@ -60,7 +64,7 @@ class app:
                 result = self.selected_video + self.selected_audio
                 video_name = self.file_name()
                 result.save(video_name)
-                #messagebox.showinfo("INFO","TAREA COMPLAETADA")
+                self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+video_name)
                 print("DONE")
             except:
                 messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
