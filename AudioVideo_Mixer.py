@@ -15,11 +15,14 @@ class app:
 
         self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", bg="black", fg="red", width=99, height = 2)
         self.label.place(x=25,y=30)
-        self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="red", fg="white", width=45, height=2, command=self.get_audio)
+        self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="red", fg="white",activebackground="white",activeforeground="red",
+                               width=45, height=2, command=self.get_audio)
         self.btnAudio.place(x=25,y=115)
-        self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white", width=45, height=2,command=self.get_video)
+        self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white",activebackground="white",activeforeground="red",
+                               width=45, height=2,command=self.get_video)
         self.btnVideo.place(x=398,y=115)
-        self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white", width=98, height=2,command=self.merge)
+        self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white",activebackground="white",activeforeground="blue",
+                             width=98, height=2,command=self.merge)
         self.btnMix.place(x=26,y=200)
 
         self.window.mainloop()
@@ -58,11 +61,11 @@ class app:
                 if new_file != "":
                     result = self.selected_video + self.selected_audio
                     result.save(new_file)
-                    messagebox.showinfo("PROCESO","TAREA COMPLETADA")
+                    messagebox.showinfo("INFO","TAREA COMPLAETADA")
                     #print(os.getcwd())
                     #video_name = self.file_name()
                     #result.save(video_name)
-                    #print("DONE")
+                    print("DONE")
             except:
                 messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
