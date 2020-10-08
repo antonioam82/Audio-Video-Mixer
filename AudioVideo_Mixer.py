@@ -34,13 +34,15 @@ class app:
         if ruta != "":
             try:
                 self.aud = (((ruta).split("/"))[-1])
+                print(self.aud)
                 if self.vid == "":
                     self.label.configure(text=self.aud)
                 else:
                     self.label.configure(text=self.vid+"+"+self.aud)
-                self.selected_audio = music(self.aud)
-            except:
-                messagebox.showwarning("ERROR","Archivo no válido")
+                self.selected_audio = music(ruta)
+            except Exception as e:
+                
+                messagebox.showwarning("ERROR",str(e))
 
     def get_video(self):
         self.labelT.configure(text = "")
@@ -53,9 +55,9 @@ class app:
                 else:
                     self.label.configure(text=self.aud+"+"+self.vid)
                 name, self.vid_ex = os.path.splitext(self.vid)
-                self.selected_video = movie(self.vid)
-            except:
-                messagebox.showwarning("ERROR","Archivo no válido")
+                self.selected_video = movie(ruta)
+            except Exception as e:
+                messagebox.showwarning("ERROR",str(e))
 
     def merge(self):
         if self.vid != "" and self.aud != "":
@@ -64,7 +66,8 @@ class app:
                 if new_file != "":
                     result = self.selected_video + self.selected_audio
                     result.save(new_file)
-                    self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+new_file))
+                    self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+new_file)
+                    print("DONE")
             except:
                 messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
