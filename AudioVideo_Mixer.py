@@ -64,6 +64,8 @@ class app:
             new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=self.vid_ex)
             if new_file != "":
                 try:
+                    new_file = new_file.replace(" ","_")
+                    print(new_file)
                     video_title = (((new_file).split("/"))[-1])
                     result = self.selected_video + self.selected_audio
                     result.save(new_file)
