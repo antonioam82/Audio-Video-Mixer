@@ -61,15 +61,15 @@ class app:
 
     def merge(self):
         if self.vid != "" and self.aud != "":
-            try:
-                new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=self.vid_ex)
-                if new_file != "":
+            new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=self.vid_ex)
+            if new_file != "":
+                try:
                     result = self.selected_video + self.selected_audio
                     result.save(new_file)
                     self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+new_file)
                     print("DONE")
-            except:
-                messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
+                except:
+                    messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
 if __name__=="__main__":
     app()
