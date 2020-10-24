@@ -12,7 +12,7 @@ class app:
         self.vid = ""
         self.aud = ""
 
-        self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", font=('Arial',10), bg="black", fg="red", width=87, height = 2)#99
+        self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", font=('Arial',10), bg="black", fg="green", width=87, height = 2)#99
         self.label.place(x=25,y=30)
         self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="dark orange",activebackground="black",activeforeground="dark orange",
                                width=45, height=2, command=self.get_audio)
@@ -25,8 +25,8 @@ class app:
         self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white",activebackground="white",activeforeground="blue",
                              width=98, height=2,command=self.merge)
         self.btnMix.place(x=26,y=200)
-        self.labelR = Label(self.window,bg="midnight blue",fg="white",width = 99, height = 2)
-        self.labelR.place(x=25,y=250)
+        self.labelR = Label(self.window,bg="midnight blue",fg="white",width = 106, height = 2)
+        self.labelR.place(x=1,y=250)
 
         self.window.mainloop()
 
@@ -41,7 +41,7 @@ class app:
                 if self.vid == "":
                     self.label.configure(text=self.aud)
                 else:
-                    self.label.configure(text=self.vid+"+"+self.aud)
+                    self.label.configure(text=self.vid+" + "+self.aud)
                 self.selected_audio = music(ruta)
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
@@ -56,7 +56,7 @@ class app:
                 if self.aud == "":
                     self.label.configure(text=self.vid)
                 else:
-                    self.label.configure(text=self.aud+"+"+self.vid)
+                    self.label.configure(text=self.aud+" + "+self.vid)
                 name, self.vid_ex = os.path.splitext(self.vid)
                 self.selected_video = movie(ruta)
             except Exception as e:
@@ -72,7 +72,7 @@ class app:
                         result = self.selected_video + self.selected_audio
                         result.save(new_file)
                         self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+video_title)
-                        self.labelR.configure(text = "RUTA: {}".format(str(new_file)))
+                        self.labelR.configure(text = "RUTA VIDEO: {}".format(str(new_file)))
                         print("DONE")
                     else:
                         messagebox.showwarning("FORMATO DE NOMBRE INCORRECTO","No introduzca espacios en blanco.\nPruebe a usar '_' en su lugar.")
