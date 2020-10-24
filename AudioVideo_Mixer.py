@@ -71,7 +71,7 @@ class app:
                         self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+video_title)
                         print("DONE")
                     else:
-                        messagebox.showwarning("FORMATO DE NOMBRE INCORRECTO","No introduzca espacios en blanco")
+                        messagebox.showwarning("FORMATO DE NOMBRE INCORRECTO","No introduzca espacios en blanco.\nPruebe a usar '_' en su lugar.")
                 except:
                     messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
