@@ -25,10 +25,13 @@ class app:
         self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white",activebackground="white",activeforeground="blue",
                              width=98, height=2,command=self.merge)
         self.btnMix.place(x=26,y=200)
+        self.labelR = Label(self.window,bg="midnight blue",fg="white",width = 99, height = 2)
+        self.labelR.place(x=25,y=250)
 
         self.window.mainloop()
 
     def get_audio(self):
+        self.labelR.configure(text = "")
         self.labelT.configure(text = "")
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("wav files","*.wav"),("all files","*")))
         if ruta != "":
@@ -45,6 +48,7 @@ class app:
                 messagebox.showwarning("ERROR",str(e))
 
     def get_video(self):
+        self.labelR.configure(text = "")
         self.labelT.configure(text = "")
         ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR VIDEO",filetypes =(("avi files","*.avi"),("all files","*")))
         if ruta != "":
@@ -69,12 +73,14 @@ class app:
                         result = self.selected_video + self.selected_audio
                         result.save(new_file)
                         self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+video_title)
+                        self.labelR.configure(text = "RUTA: {}".format(str(new_file)))
                         print("DONE")
                     else:
                         messagebox.showwarning("FORMATO DE NOMBRE INCORRECTO","No introduzca espacios en blanco.\nPruebe a usar '_' en su lugar.")
-                except:
+                except Exception as e:
                     messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
-
+                    #messagebox.showwarning("ERROR",str(e))
+    
 if __name__=="__main__":
     app()
 
