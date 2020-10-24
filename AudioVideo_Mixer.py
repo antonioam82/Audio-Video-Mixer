@@ -44,7 +44,6 @@ class app:
                     self.label.configure(text=self.vid+"+"+self.aud)
                 self.selected_audio = music(ruta)
             except Exception as e:
-                
                 messagebox.showwarning("ERROR",str(e))
 
     def get_video(self):
@@ -77,9 +76,8 @@ class app:
                         print("DONE")
                     else:
                         messagebox.showwarning("FORMATO DE NOMBRE INCORRECTO","No introduzca espacios en blanco.\nPruebe a usar '_' en su lugar.")
-                except Exception as e:
+                except:
                     messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
-                    #messagebox.showwarning("ERROR",str(e))
     
 if __name__=="__main__":
     app()
