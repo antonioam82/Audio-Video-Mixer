@@ -7,16 +7,16 @@ class app:
     def __init__(self):
         self.window = Tk()
         self.window.title("Audio & Video Mixer")
-        self.window.configure(background="gray50")
+        self.window.configure(background="midnight blue")
         self.window.geometry("750x290")
         self.vid = ""
         self.aud = ""
 
-        self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", bg="black", fg="red", width=99, height = 2)
+        self.label = Label(self.window, text="NINGÚN ELEMENTO SELECCIONADO", font=('Arial',10), bg="black", fg="red", width=87, height = 2)#99
         self.label.place(x=25,y=30)
-        self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="red", fg="white",activebackground="white",activeforeground="red",
+        self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="dark orange",activebackground="black",activeforeground="dark orange",
                                width=45, height=2, command=self.get_audio)
-        self.labelT = Label(self.window, bg = "gray50", fg = "white", width = 99, height = 2)
+        self.labelT = Label(self.window, bg = "midnight blue", fg = "white", width = 99, height = 2)
         self.labelT.place(x=25,y=70)
         self.btnAudio.place(x=25,y=115)
         self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white",activebackground="white",activeforeground="red",
@@ -64,13 +64,14 @@ class app:
             new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=self.vid_ex)
             if new_file != "":
                 try:
-                    new_file = new_file.replace(" ","_")
-                    print(new_file)
                     video_title = (((new_file).split("/"))[-1])
-                    result = self.selected_video + self.selected_audio
-                    result.save(new_file)
-                    self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+video_title)
-                    print("DONE")
+                    if not " " in video_title:
+                        result = self.selected_video + self.selected_audio
+                        result.save(new_file)
+                        self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+video_title)
+                        print("DONE")
+                    else:
+                        messagebox.showwarning("FORMATO DE NOMBRE INCORRECTO","No introduzca espacios en blanco")
                 except:
                     messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
 
