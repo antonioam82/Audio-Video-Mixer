@@ -33,8 +33,8 @@ class app:
     def get_audio(self):
         self.labelR.configure(text = "")
         self.labelT.configure(text = "")
-        ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("wav files","*.wav"),("all files","*")))
-        if ruta != "":
+        ruta = self.check_route(filedialog.askopenfilename(initialdir="/",title="SELECCIONAR AUDIO",filetypes =(("wav files","*.wav"),("all files","*"))))
+        if ruta is not None:
             try:
                 self.aud = (((ruta).split("/"))[-1])
                 print(self.aud)
@@ -49,8 +49,8 @@ class app:
     def get_video(self):
         self.labelR.configure(text = "")
         self.labelT.configure(text = "")
-        ruta = filedialog.askopenfilename(initialdir="/",title="SELECCIONAR VIDEO",filetypes =(("avi files","*.avi"),("all files","*")))
-        if ruta != "":
+        ruta = self.check_route(filedialog.askopenfilename(initialdir="/",title="SELECCIONAR VIDEO",filetypes =(("avi files","*.avi"),("all files","*"))))
+        if ruta is not None:
             try:
                 self.vid = (((ruta).split("/"))[-1])
                 if self.aud == "":
@@ -62,25 +62,31 @@ class app:
             except Exception as e:
                 messagebox.showwarning("ERROR",str(e))
 
+    def check_route(self,route):
+        if route != "":
+            if not " " in route:
+                return route
+            else:
+                messagebox.showwarning("FORMATO DE RUTA INCORRECTO","La ruta o archivo no debe contener espacios en blanco.\nPruebe a usar '_' en su lugar.")
+        
+
     def merge(self):
         if self.vid != "" and self.aud != "":
-            new_file=filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=self.vid_ex)
-            if new_file != "":
+            new_file=self.check_route(filedialog.asksaveasfilename(initialdir="/",title="Guardar en",defaultextension=self.vid_ex))
+            if new_file is not None:
                 try:
                     video_title = (((new_file).split("/"))[-1])
-                    if not " " in video_title:
-                        result = self.selected_video + self.selected_audio
-                        result.save(new_file)
-                        self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+video_title)
-                        self.labelR.configure(text = "RUTA VIDEO: {}".format(str(new_file)))
-                        print("DONE")
-                    else:
-                        messagebox.showwarning("FORMATO DE NOMBRE INCORRECTO","No introduzca espacios en blanco.\nPruebe a usar '_' en su lugar.")
+                    result = self.selected_video + self.selected_audio
+                    result.save(new_file)
+                    self.labelT.configure(text = "PROCESO FINALIZADO\n ARCHIVO CREADO: "+video_title)
+                    self.labelR.configure(text = "RUTA VIDEO: {}".format(str(new_file)))
+                    print("DONE")
                 except:
                     messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
     
 if __name__=="__main__":
     app()
+
 
 
 
