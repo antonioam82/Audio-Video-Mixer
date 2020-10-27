@@ -21,7 +21,7 @@ class app:
         self.labelT = Label(self.window, bg = "ivory3", width = 99, height = 2)
         self.labelT.place(x=25,y=70)
         self.btnAudio.place(x=25,y=115)
-        self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white",activebackground="white",activeforeground="red",
+        self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="dark orange",activebackground="black",activeforeground="dark orange",
                                width=45, height=2,command=self.get_video)
         self.btnVideo.place(x=398,y=115)
         self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white",activebackground="white",activeforeground="blue",
