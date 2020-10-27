@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from tkinter import *
 from tkinter import messagebox, filedialog
 from mhmovie.code import *
@@ -7,7 +9,7 @@ class app:
     def __init__(self):
         self.window = Tk()
         self.window.title("Audio & Video Mixer")
-        self.window.configure(background="midnight blue")
+        self.window.configure(background="ivory3")
         self.window.geometry("750x290")
         self.vid = ""
         self.aud = ""
@@ -16,7 +18,7 @@ class app:
         self.label.place(x=25,y=30)
         self.btnAudio = Button(self.window, text="SELECCIONAR ARCHIVO DE AUDIO", bg="dark orange",activebackground="black",activeforeground="dark orange",
                                width=45, height=2, command=self.get_audio)
-        self.labelT = Label(self.window, bg = "midnight blue", fg = "white", width = 99, height = 2)
+        self.labelT = Label(self.window, bg = "ivory3", width = 99, height = 2)
         self.labelT.place(x=25,y=70)
         self.btnAudio.place(x=25,y=115)
         self.btnVideo = Button(self.window, text="SELECCIONAR ARCHIVO DE VIDEO", bg="red", fg="white",activebackground="white",activeforeground="red",
@@ -25,7 +27,7 @@ class app:
         self.btnMix = Button(self.window, text="COMBINAR AUDIO Y VIDEO", bg="blue", fg="white",activebackground="white",activeforeground="blue",
                              width=98, height=2,command=self.merge)
         self.btnMix.place(x=26,y=200)
-        self.labelR = Label(self.window,bg="midnight blue",fg="white",width = 106, height = 2)
+        self.labelR = Label(self.window,bg="ivory3",width = 106, height = 2)
         self.labelR.place(x=1,y=250)
 
         self.window.mainloop()
@@ -37,7 +39,6 @@ class app:
         if ruta is not None:
             try:
                 self.aud = (((ruta).split("/"))[-1])
-                print(self.aud)
                 if self.vid == "":
                     self.label.configure(text=self.aud)
                 else:
@@ -82,7 +83,7 @@ class app:
                     self.labelR.configure(text = "RUTA VIDEO: {}".format(str(new_file)))
                     print("DONE")
                 except:
-                    messagebox.showwarning("ERROR","Hubo un error al efectuar la operación")
+                    messagebox.showwarning("ERROR","Hubo un error al efectuar la operación.")
     
 if __name__=="__main__":
     app()
